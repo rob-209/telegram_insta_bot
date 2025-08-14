@@ -8,24 +8,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters, C
 
 
 
-import os
-from telegram.ext import Application
 
-PORT = int(os.environ.get('PORT', 5000))  # Render использует $PORT
-
-async def main():
-    application = Application.builder().token(TOKEN).build()
-    
-    # Для вебхуков
-    await application.run_webhook(
-        listen="0.0.0.0",
-        port=PORT,
-        url_path=TOKEN,
-        webhook_url=f"https://your-bot-name.onrender.com/{TOKEN}"
-    )
-    
-    # ИЛИ для polling (не рекомендуется на Render)
-    # application.run_polling()
 # Загружаем переменные из .env
 load_dotenv()
 
